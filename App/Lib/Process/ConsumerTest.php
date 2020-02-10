@@ -25,12 +25,13 @@ class ConsumerTest extends AbstractProcess
                 while (true){
                     try{
                         //$task = Di::getInstance()->get('Redis')->lPop('swoole_list_test');
-                        //$task = (new Redis)->lPop('swoole_list_test');
+                        $task = (new Redis)->lPop('swoole_list_test');
+                        
                         //获取连接池对象
-                        $redisPool = \EasySwoole\RedisPool\Redis::getInstance()->get('redis');
-                        $redis = $redisPool->getObj();
-                        $task = $redis->exec('lpop','swoole_list_test');
-                        $pool->freeObj($redis);
+                        // $redisPool = \EasySwoole\RedisPool\Redis::getInstance()->get('redis');
+                        // $redis = $redisPool->getObj();
+                        // $task = $redis->exec('lpop','swoole_list_test');
+                        // $pool->freeObj($redis);
                         if($task){
                             // do you task
                         	// 发送邮件 推送信息 视频喜欢

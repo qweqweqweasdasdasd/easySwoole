@@ -48,12 +48,12 @@ Class EasySwooleEvent implements EventInterface {
         );
 
         // 註冊redis对象
-        //Di::getInstance()->set('Redis',Redis::getInstance());
+        Di::getInstance()->set('Redis',Redis::getInstance());
         // 註冊redis連接池
-        $redisPoolConfig = \EasySwoole\RedisPool\Redis::getInstance()->register('redis',new \EasySwoole\Redis\Config\RedisConfig());
-        //配置连接池连接数
-        $redisPoolConfig->setMinObjectNum(5);
-        $redisPoolConfig->setMaxObjectNum(20);
+        // $redisPoolConfig = \EasySwoole\RedisPool\Redis::getInstance()->register('redis',new \EasySwoole\Redis\Config\RedisConfig());
+        // //配置连接池连接数
+        // $redisPoolConfig->setMinObjectNum(5);
+        // $redisPoolConfig->setMaxObjectNum(20);
 
         // 注册多进程redis异步队列
         $allNum = 5;

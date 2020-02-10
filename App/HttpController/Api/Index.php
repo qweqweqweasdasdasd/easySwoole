@@ -74,9 +74,8 @@ class Index extends Base
 		$params = $this->request()->getRequestParam();
 
 		$phone = $params['phone'];
-		//$result = Di::getInstance()->get('Redis')->rPush('swoole_list_test',$phone);
+		$result = Di::getInstance()->get('Redis')->rPush('swoole_list_test',$phone);
 
-		
 		return $this->writeJson(200,$result,'success');
 	}
 }
