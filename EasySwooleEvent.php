@@ -9,17 +9,19 @@
 namespace EasySwoole;
 
 use \EasySwoole\Core\AbstractInterface\EventInterface;
+use EasySwoole\Core\Swoole\Process\ProcessManager;
+use EasySwoole\Core\Component\Crontab\CronTab;
 use \EasySwoole\Core\Swoole\ServerManager;
 use \EasySwoole\Core\Swoole\EventRegister;
-use \EasySwoole\Core\Http\Request;
+use EasySwoole\Core\Swoole\Time\Timer;
 use \EasySwoole\Core\Http\Response;
+use \EasySwoole\Core\Http\Request;
 use \EasySwoole\Core\Component\Di;
+use App\Lib\Process\ConsumerTest;
+use App\Lib\Cache\Video as videoCache;
 use App\Lib\Redis\Redis;
 use \EasySwoole\Config;
 use \think\facade\Db;
-
-use EasySwoole\Core\Swoole\Process\ProcessManager;
-use App\Lib\Process\ConsumerTest;
 
 Class EasySwooleEvent implements EventInterface {
 
@@ -60,6 +62,29 @@ Class EasySwooleEvent implements EventInterface {
         for ($i = 0 ;$i < $allNum;$i++){
             ProcessManager::getInstance()->addProcess("consumer_{$i}",ConsumerTest::class);
         }
+
+        // CronTab 定时器定时生成静态化数据
+        $videoCacheObj = new videoCache();
+        // 方案 一
+        CronTab::getInstance()
+                ->addRule('swoole_api_video_index_lists','*/10 * * * *',function() use($videoCacheObj){
+                    $videoCacheObj->setIndexVideo();
+                })
+                ->addRule('swoole_api_video_index_lists_2','*/20 * * * *',function(){
+                var_dump('22222222');
+                });
+
+        // 方案二
+        // swoole 毫秒级的定时器
+        $register->add(EventRegister::onWorkerStart,function(\swoole_server $server, $workerId) use($videoCacheObj){
+            Timer::loop(1000*2,function() use($videoCacheObj,$workerId){
+                if($workerId == 1){
+                    echo 'workerId '.$workerId.PHP_EOL;
+                    $videoCacheObj->setIndexVideo();
+                }
+            });
+        });
+        
     }
 
     public static function onRequest(Request $request,Response $response): void

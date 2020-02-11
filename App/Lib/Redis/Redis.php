@@ -35,6 +35,23 @@ class Redis
 	}
 
 	/**
+	 *	set数据到redis
+	 */
+	public function set($key,$value,$time=0)
+	{
+		if(empty($key)){
+			return '';
+		}
+		if(is_array($value)){
+			json_encode($value);
+		}
+		if(empty($time)){
+			return $this->redis->set($key,$value);
+		}
+		return $this->redis->setx($key,$time,$value);
+	}
+
+	/**
 	 *	获取到制定key的value
 	 */
 	public function get($key)
