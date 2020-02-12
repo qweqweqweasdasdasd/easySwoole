@@ -76,14 +76,14 @@ Class EasySwooleEvent implements EventInterface {
 
         // 方案二
         // swoole 毫秒级的定时器
-        $register->add(EventRegister::onWorkerStart,function(\swoole_server $server, $workerId) use($videoCacheObj){
-            Timer::loop(1000*2,function() use($videoCacheObj,$workerId){
-                if($workerId == 1){
-                    echo 'workerId '.$workerId.PHP_EOL;
-                    $videoCacheObj->setIndexVideo();
-                }
-            });
-        });
+        // $register->add(EventRegister::onWorkerStart,function(\swoole_server $server, $workerId) use($videoCacheObj){
+        //     Timer::loop(1000*2,function() use($videoCacheObj,$workerId){
+        //         if($workerId == 1){
+        //             echo 'workerId '.$workerId.PHP_EOL;
+        //             $videoCacheObj->setIndexVideo();
+        //         }
+        //     });
+        // });
         
     }
 

@@ -34,4 +34,18 @@ class Base
 
 		return $this->db->insert($this->tableName,$data);
 	}
+
+	/** 
+	 *	通过id获取到数据
+	 */
+	public function getById($id)
+	{
+		if(empty($id) || !is_numeric($id)){
+			//return [];
+			throw new \Exception("服务器内部错误");
+		}
+		$this->db->where('id',$id);
+		$result = $this->db->getOne($this->tableName);
+		return $result ?? [];
+	}
 }

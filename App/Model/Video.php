@@ -36,6 +36,12 @@ class Video extends Base
 		return $data;
 	}
 
+	/**
+	 *	指定id数组获取到视频列表
+	 */
+	public function getVideoInIds($videoIds)
+	{
+	}
 
 	/**
 	 *	获取点播首页缓存数据

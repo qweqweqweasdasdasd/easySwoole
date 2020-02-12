@@ -35,6 +35,14 @@ class Redis
 	}
 
 	/**
+	 *	魔术方法 ...可变长度参数
+	 */
+	public function __call($name,$arg)
+	{
+		return $this->redis->$name(...$arg);
+	}
+
+	/**
 	 *	set数据到redis
 	 */
 	public function set($key,$value,$time=0)
@@ -85,5 +93,41 @@ class Redis
 		}
 
 		return $this->redis->rpush($key,$value);
+	}
+
+	/**
+	 *	有序集合 添加指定key成员的分数
+	 */
+	public function zincrby($key,$increment,$member)
+	{
+		if(empty($key) || empty($member)){
+			return false;
+		}
+
+		return $this->redis->zincrby($key,$increment,$member);
+	}
+
+	/** 
+	 *	有序集合 获取到指定key成员的分数
+	 */
+	public function zscore($key,$member)
+	{
+		if(empty($key) || empty($member)){
+			return false;
+		}
+
+		return $this->redis->zscore($key,$member);
+	}
+
+	/**
+	 *	有序集合 排列从大到小 ZREVRANGE
+	 */
+	public function zrevrange($key,$start,$stop,$type = '')
+	{
+		if(empty($key) || $start ===false || empty($stop) || empty($type)){
+			return false;
+		}
+
+		return $this->redis->zrevrange($key,$start,$stop,$type);
 	}
 }
