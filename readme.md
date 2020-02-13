@@ -4,4 +4,3 @@
 四， 阿里云vod点播上传失败，秘钥问题
 五， SELECT SQL_CALC_FOUND_ROWS * FROM video LIMIT 0, 5; select found_rows();
 六， 秒数转换为1:20格式 gmstrftime("%H:%M:%S",$v['duration']);
-
