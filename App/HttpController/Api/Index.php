@@ -1,8 +1,8 @@
 <?php 
 namespace App\HttpController\Api;
 
-use EasySwoole\Core\Http\Message\Status;
-use \EasySwoole\Core\Component\Di;
+use EasySwoole\Http\Message\Status;
+use \EasySwoole\Component\Di;
 use App\HttpController\Api\Base;
 use App\Lib\AliyunSdk\AliVod;
 use App\Lib\Redis\Redis;

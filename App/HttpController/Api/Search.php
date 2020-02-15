@@ -1,7 +1,7 @@
 <?php 
 namespace App\HttpController\Api;
 
-use EasySwoole\Core\Http\Message\Status;
+use EasySwoole\Http\Message\Status;
 use App\Model\Es\EsVideo;
 
 /**

@@ -1,8 +1,8 @@
 <?php 
 namespace App\HttpController\Api;
 
-use \EasySwoole\Core\Component\Di;
 use App\HttpController\Api\Base;
+use EasySwoole\Component\Di;
 use App\Lib\ClassArr;
 
 /**

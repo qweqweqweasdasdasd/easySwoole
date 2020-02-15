@@ -1,7 +1,7 @@
 <?php 
 namespace App\Lib\Redis;
 
-use EasySwoole\Core\AbstractInterface\Singleton;
+use EasySwoole\Component\Singleton;
 use \EasySwoole\Config;
 
 /**

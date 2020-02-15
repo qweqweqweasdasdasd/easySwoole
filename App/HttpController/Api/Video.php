@@ -1,12 +1,12 @@
 <?php 
 namespace App\HttpController\Api;
 
-use EasySwoole\Core\Swoole\Task\TaskManager;
-use EasySwoole\Core\Utility\Validate\Rules;
-use EasySwoole\Core\Utility\Validate\Rule;
-use EasySwoole\Core\Http\Message\Status;
-use EasySwoole\Core\Component\Logger;
-use \EasySwoole\Core\Component\Di;
+use EasySwoole\EasySwoole\Task\TaskManager;
+// use EasySwoole\Utility\Validate\Rules;
+// use EasySwoole\Utility\Validate\Rule;
+use EasySwoole\Http\Message\Status;
+use EasySwoole\EasySwoole\Logger;
+use EasySwoole\Component\Di;
 use App\Model\Video as VideoModel;
 use App\HttpController\Api\Base;
 
@@ -48,7 +48,7 @@ class Video extends Base
 		$video['duration'] = gmstrftime("%H:%M:%S",$video['duration']);
 		$video['score'] = Di::getInstance()->get('Redis')->zscore(\Yaconf::get('redis.video_play_num_key'),$id);
 		// task异步处理业务
-		TaskManager::async(function() use($id){
+		TaskManager::getInstance()->async(function() use($id){
 			var_dump('task-id-'.$id);
 
 			// 按天排行记录数据
@@ -85,15 +85,15 @@ class Video extends Base
 		// 写入日志
 		Logger::getInstance()->log($this->logType.json_encode($params));
 		// 数据校验
-		$ruleObj = new Rules();
-		$ruleObj->add('name','视频名称错误')->withRule(Rule::REQUIRED)->withRule(Rule::MIN_LEN,2);
-		$ruleObj->add('url','视频地址错误')->withRule(Rule::REQUIRED);
-		$ruleObj->add('image','图片地址错误')->withRule(Rule::REQUIRED);
-		$ruleObj->add('content','视频内容错误')->withRule(Rule::REQUIRED);
-		$validate = $this->validateParams($ruleObj);
-		if($validate->hasError()){
-			return $this->writeJson(Status::CODE_BAD_REQUEST,['error'=>$validate->getErrorList()->first()->getMessage()],'提交数据有误');
-		}
+		// $ruleObj = new Rules();
+		// $ruleObj->add('name','视频名称错误')->withRule(Rule::REQUIRED)->withRule(Rule::MIN_LEN,2);
+		// $ruleObj->add('url','视频地址错误')->withRule(Rule::REQUIRED);
+		// $ruleObj->add('image','图片地址错误')->withRule(Rule::REQUIRED);
+		// $ruleObj->add('content','视频内容错误')->withRule(Rule::REQUIRED);
+		// $validate = $this->validateParams($ruleObj);
+		// if($validate->hasError()){
+		// 	return $this->writeJson(Status::CODE_BAD_REQUEST,['error'=>$validate->getErrorList()->first()->getMessage()],'提交数据有误');
+		// }
 		$data = [
 			'name' => $params['name'],
 			'url' => $params['url'],

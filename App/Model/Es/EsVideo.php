@@ -1,7 +1,7 @@
 <?php 
 namespace App\Model\Es;
 
-use \EasySwoole\Core\Component\Di;
+use \EasySwoole\Component\Di;
 
 /**
  *  es 只关心搜索方法

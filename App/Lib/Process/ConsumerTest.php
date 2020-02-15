@@ -1,16 +1,16 @@
 <?php 
 namespace App\Lib\Process;
 
-use EasySwoole\Core\Swoole\Process\AbstractProcess;
-use EasySwoole\Core\Component\Logger;
-use \EasySwoole\Core\Component\Di;
-use App\Lib\Redis\Redis;
+use EasySwoole\Component\Process\AbstractProcess;
 use Swoole\Process;
+use EasySwoole\Component\Di;
+use EasySwoole\EasySwoole\Logger;
+use App\Lib\Redis\Redis;
 
 class ConsumerTest extends AbstractProcess
 {
     private $isRun = false;
-    public function run(Process $process)
+    public function run($arg)
     {
         // TODO: Implement run() method.
         /*

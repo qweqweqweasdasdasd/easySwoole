@@ -5,8 +5,9 @@
         }
     },
     "require": {
-        "easyswoole/easyswoole": "2.x-dev",
-		"joshcam/mysqli-database-class": "dev-master",
-		"topthink/think-orm": "^2.0"
+        "easyswoole/easyswoole": "^3.3",
+        "elasticsearch/elasticsearch": "^7.0",
+        "joshcam/mysqli-database-class": "dev-master",
+		"easyswoole/mysqli": "^2.1"
     }
 }

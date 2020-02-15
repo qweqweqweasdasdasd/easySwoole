@@ -1,7 +1,7 @@
 <?php 
 namespace App\Lib\Cache;
 
-use \EasySwoole\Core\Component\Di;
+use \EasySwoole\Component\Di;
 use App\Model\Video as videoModel;
 use App\Lib\Util\Tools;
 /**

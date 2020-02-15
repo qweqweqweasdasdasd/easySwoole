@@ -1,7 +1,7 @@
 <?php 
 namespace App\Model;
 
-use \EasySwoole\Core\Component\Di;
+use \EasySwoole\Component\Di;
 /**
  * 
  */
