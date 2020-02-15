@@ -8,6 +8,7 @@ use App\Lib\AliyunSdk\AliVod;
 use App\Lib\Redis\Redis;
 use App\Model\Video as VideoModel;
 use App\Lib\Cache\Video as videoCache;
+use App\Model\Es\EsVideo;
 
 /**
  * api 接口
@@ -185,4 +186,42 @@ class Index extends Base
 
         var_dump($obj->getPlayerInfo($videoID));
 	}
+
+	/**
+	 *	测试es-demo
+	 *	http://150.109.46.180:9501/api/index/demo
+	 */
+	public function demo()
+	{
+		// 测试es
+		$params = [
+			"index"=>"es_video",
+			//"id"=>1,
+			"body"=>[
+				'query'=>[
+					'match'=>[
+						'name' => '刘德华'
+					],
+				],
+			],
+		];
+
+		// 实例化es对象
+		$client = Di::getInstance()->get('ES');
+		//var_dump($client);
+		$res = $client->search($params);
+
+		return $this->writeJson(200,$res,'success');
+	}
+
+	/**
+	 *	通过es自己封装的类进行查询
+	 */
+	public function demo2()
+	{
+		$res = (new EsVideo())->searchByName($this->params['name']);
+		
+		return $this->writeJson(200,$res,'success');
+	}
+
 }

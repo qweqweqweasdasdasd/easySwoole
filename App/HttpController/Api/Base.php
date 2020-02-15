@@ -42,15 +42,19 @@ class Base extends Controller
     /**
      *  PHP数组分页处理
      */
-    public function getPagingDatas($count,$data)
+    public function getPagingDatas($count,$data,$issplice = 1)
     {
         $totalPages = ceil($count/$this->params['size']);
-
+        if($totalPages > \Yaconf::get('base.maxPageSize')){
+            $totalPages = \Yaconf::get('base.maxPageSize');
+        }
         $data = $data ?? [];
-        $data = array_splice($data, $this->params['from'], $this->params['size']);
+        if($issplice){
+            $data = array_splice($data, $this->params['from'], $this->params['size']);
+        }
 
         return [
-            'total_pages' => (int)$totalPages,
+            'total_pages' => (int)$totalPages,  // 深度分页设置一个最大数值 100页
             'page_size' => (int)$this->params['size'],
             'count' => (int)$count,
             'lists' => $data,

@@ -19,6 +19,7 @@ use \EasySwoole\Core\Http\Request;
 use \EasySwoole\Core\Component\Di;
 use App\Lib\Process\ConsumerTest;
 use App\Lib\Cache\Video as videoCache;
+use App\Model\Es\EsClient;
 use App\Lib\Redis\Redis;
 use \EasySwoole\Config;
 use \think\facade\Db;
@@ -51,6 +52,7 @@ Class EasySwooleEvent implements EventInterface {
 
         // 註冊redis对象
         Di::getInstance()->set('Redis',Redis::getInstance());
+        Di::getInstance()->set('ES',EsClient::getInstance());
         // 註冊redis連接池
         // $redisPoolConfig = \EasySwoole\RedisPool\Redis::getInstance()->register('redis',new \EasySwoole\Redis\Config\RedisConfig());
         // //配置连接池连接数

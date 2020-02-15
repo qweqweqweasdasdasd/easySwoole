@@ -54,7 +54,7 @@
   "status": 1,
   "video_id": "234qweqwe"
 }
-// 查询一条数据 [模糊匹配] match [精确匹配] match_phrase
+// 查询一条数据 [模糊匹配] match [精确匹配] match_phra
 {
   "query": {
     "match": {
