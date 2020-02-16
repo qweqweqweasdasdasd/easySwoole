@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "120a229a-22cf-4cbe-91cb-19adb052ecd5",
+		"name": "easyswoole直播接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "视频上传接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/D:/短视频测试/1548486271.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/upload/file",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"upload",
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "图片上传接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/短视频测试/5cac01660812109906000338-240-135.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/upload/file",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"upload",
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频信息入库接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "武汉疫情中国其实是没有作为的",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "video",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "武汉疫情中国其实是没有作为的",
+							"type": "text"
+						},
+						{
+							"key": "cate_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/video/add",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"video",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "阿里云vod上传测试",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/index/testAliVod",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"index",
+						"testAliVod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频首页列表接口一",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/index/getVideoData",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"index",
+						"getVideoData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "测试定时缓存接口",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/index/testVideoCache",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"index",
+						"testVideoCache"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频首页列表接口二",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/index/getVideoCahceFileJsonData",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"index",
+						"getVideoCahceFileJsonData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频基本信息获取",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/video/index?id=3",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"video",
+						"index"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频点播次数总排行",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/video/rank",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"video",
+						"rank"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "es创建索引",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mappings\": {\r\n    \"properties\": {\r\n      \"name\": {\r\n        \"type\": \"text\"\r\n      },\r\n      \"cate_id\": {\r\n        \"type\": \"integer\"\r\n      },\r\n      \"image\": {\r\n        \"type\": \"text\"\r\n      },\r\n      \"url\": {\r\n        \"type\": \"text\"\r\n      },\r\n      \"type\": {\r\n        \"type\": \"byte\"\r\n      },\r\n      \"content\": {\r\n        \"type\": \"text\"\r\n      },\r\n      \"uploader\": {\r\n        \"type\": \"keyword\"\r\n      },\r\n      \"create_time\": {\r\n        \"type\": \"integer\"\r\n      },\r\n      \"update_time\": {\r\n        \"type\": \"integer\"\r\n      },\r\n      \"status\": {\r\n        \"type\": \"byte\"\r\n      },\r\n      \"video_id\": {\r\n        \"type\": \"keyword\"\r\n      },\r\n      \"duration\": {\r\n        \"type\": \"integer\"\r\n      }\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/es_video",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"es_video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "es创建一个文档",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"刘德7777华\",\r\n  \"cate_id\": 1,\r\n  \"image\": \"http://www.baidu.com\",\r\n  \"url\": \"http://www.g.com\",\r\n  \"type\": 1,\r\n  \"uploader\": \"sinwo\",\r\n  \"status\": 1,\r\n  \"video_id\": \"234qweqwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/es_video/_doc/7",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"es_video",
+						"_doc",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "es查询match",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":{\n\t\t\"match_phrase\":{\n\t\t\t\"name\":\"刘德华\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/es_video/_doc/_search",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"es_video",
+						"_doc",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "测试es获取数据",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/index/demo2?name=\"刘德华\"",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"index",
+						"demo2"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "\"刘德华\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "视频es检索接口",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9501/api/search/index?keyword=\"刘德华\"",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9501",
+					"path": [
+						"api",
+						"search",
+						"index"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "\"刘德华\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

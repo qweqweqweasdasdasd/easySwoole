@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "b561d0d4-bbb7-4a27-bb7e-ce3a069df9eb",
+		"name": "elasticsearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "添加索引库",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mappings\":{\n\t\t\"properties\":{\n\t\t\t\"id\":{\n\t\t\t\t\"type\":\"long\",\n\t\t\t\t\"store\":true\n\t\t\t},\n\t\t\t\"title\":{\n\t\t\t\t\"type\":\"text\",\n\t\t\t\t\"store\":true,\n\t\t\t\t\"index\":true,\n\t\t\t\t\"analyzer\":\"standard\"\n\t\t\t},\n\t\t\t\"content\":{\n\t\t\t\t\"type\":\"text\",\n\t\t\t\t\"store\":true,\n\t\t\t\t\"index\":true,\n\t\t\t\t\"analyzer\":\"standard\"\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "设置索引库mappings信息",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"properties\":{\n\t\t\"id\":{\n\t\t\t\"type\":\"text\",\n\t\t\t\"store\":true\n\t\t},\n\t\t\"title\":{\n\t\t\t\"type\":\"text\",\n\t\t\t\"store\":true,\n\t\t\t\"index\":true,\n\t\t\t\"analyzer\":\"standard\"\n\t\t},\n\t\t\"content\":{\n\t\t\t\"type\":\"text\",\n\t\t\t\"store\":true,\n\t\t\t\"index\":true,\n\t\t\t\"analyzer\":\"standard\"\n\t\t}\n\t}\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog/_mappings",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog",
+						"_mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "版本不同type问题",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mappings\": {\r\n  \t\"v\":{\r\n    \"properties\": { \r\n      \"foo\": {\r\n        \"type\": \"keyword\"\r\n      }\r\n    }\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/test?include_type_name=true",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"test"
+					],
+					"query": [
+						{
+							"key": "include_type_name",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取索引mappings信息",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_mappings",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除索引库",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "添加文档",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"title\":\"习近平是中国的主席\",\n\t\"content\":\"可惜中国是一个伟大的国家\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/5",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除文档",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/5",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改文档",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":5,\n\t\"title\":\"修改之后的文档\",\n\t\"content\":\"修改之后的文档\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/5",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据id查询",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/5",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据关键词查询",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": {\r\n    \"term\": {\r\n      \"title\": \"习\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/_search",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用querystring查询",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": {\r\n    \"query_string\": {\r\n      \"default_field\":\"title\",\r\n      \"query\": \"习近平\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://150.109.46.180:9200/blog1/_doc/_search",
+					"protocol": "http",
+					"host": [
+						"150",
+						"109",
+						"46",
+						"180"
+					],
+					"port": "9200",
+					"path": [
+						"blog1",
+						"_doc",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
